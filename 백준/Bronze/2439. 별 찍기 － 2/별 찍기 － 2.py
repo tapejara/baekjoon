@@ -1,8 +1,6 @@
 a = int(input())
-for i in range(a):
+for i  in range(1,a + 1):
     b = ""
-    for _ in range(a-i-1):
-        b += " "
-    for _ in range(i+1):
-        b += "*"
+    b += " " * (a - i)
+    b += "*" * i
     print(b)
