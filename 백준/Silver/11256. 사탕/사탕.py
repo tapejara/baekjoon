@@ -8,8 +8,10 @@ for _ in range(t):
     for i in range(n):
         r, c = map(int,input().split())
         box.append(r * c)
-    while j > 0:
-        j -= max(box)
-        box.remove(max(box))
+    box.sort(reverse = True)
+    for i in range(n):
+        if(j <= 0):
+            break
+        j -= box[i]
         count += 1
     print(count)
