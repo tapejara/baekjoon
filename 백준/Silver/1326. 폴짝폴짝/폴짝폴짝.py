@@ -4,22 +4,21 @@ input = sys.stdin.readline
 n = int(input())
 bridge = list(map(int,input().split()))
 a, b = map(int,input().split())
-start = (a - 1, 0)
+a -= 1
+b -= 1
+start = (a, 0)
 q = deque([start])
 answer = n
 while q:
     flag = q.popleft()
-    if(flag[0] == b - 1):
+    if(flag[0] == b):
         answer = flag[1]
         break
-    i = 1
-    j = 1
-    while(flag[0] + (bridge[flag[0]] * i) <= n - 1):
-        q.append((flag[0] + (bridge[flag[0]] * i), flag[1] + 1 ))
-        i += 1
-    while(0 <= flag[0] - (bridge[flag[0]] * j)):
-        q.append((flag[0] - (bridge[flag[0]] * j), flag[1] + 1))
-        j += 1
+    jump = bridge[flag[0]]
+    for i in range(flag[0] + jump, n, jump):
+        q.append((i, flag[1] + 1))
+    for i in range(flag[0] - jump, -1, -jump):
+        q.append((i, flag[1] + 1))
 if(answer == n or answer == 0):
     print(-1)
 else:
