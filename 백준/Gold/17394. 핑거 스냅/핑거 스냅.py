@@ -8,10 +8,10 @@ for i in range(2,100001):
 t = int(input())
 for _ in range(t):
     n, a, b = map(int, input().split())
-    goal = []
+    goal = set()
     for i in range(a, b + 1):
         if(i in prime):
-            goal.append(i)
+            goal.add(i)
     if(len(goal) == 0):
         print(-1)
         continue
@@ -22,30 +22,11 @@ for _ in range(t):
         if(num in goal):
             print(count)
             break
-        if(num > b):
-            if(visited[num // 2] == 0):
-                q.append((num // 2, count + 1))
-                visited[num // 2] = 1
-            if(visited[num // 3] == 0):
-                q.append((num // 3, count + 1))
-                visited[num // 3] = 1
-            if(visited[num - 1] == 0 and 0 <= num - 1):
-                q.append((num - 1, count + 1))
-                visited[num - 1] = 1
-        elif(a <= num <= b):
-            if(visited[num // 2] == 0):
-                q.append((num // 2, count + 1))
-                visited[num // 2] = 1
-            if(visited[num // 3] == 0):
-                q.append((num // 3, count + 1))
-                visited[num // 3] = 1
-            if(visited[num - 1] == 0 and 0 <= num - 1):
-                q.append((num - 1, count + 1))
-                visited[num - 1] = 1
-            if(visited[num + 1] == 0 and num + 1 < len(visited)):
-                q.append((num + 1, count + 1))
-                visited[num + 1]
-        elif(num < a):
-            if(visited[num + 1] == 0 and num + 1 < len(visited)):
-                q.append((num + 1, count + 1))
-                visited[num + 1]
+        for i in [2, 3]:
+            if(0 <= num // i <= 1000000 and visited[num // i] == 0):
+                q.append((num // i, count + 1))
+                visited[num // i] = 1
+        for i in [1, -1]:
+            if(0 <= num + i <= 1000000 and visited[num + i] == 0):
+                q.append((num + i, count + 1))
+                visited[num + i] = 1
