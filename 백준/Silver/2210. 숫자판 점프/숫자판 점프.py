@@ -1,24 +1,15 @@
-import sys
-sys.setrecursionlimit(10**6)
-input = sys.stdin.readline
 board = [list(input().split()) for _ in range(5)]
 answer = set()
-temp = []
 
-def dfs(y, x):
-    temp.append(board[y][x])
-    if(len(temp) == 6):
-        num = ""
-        for c in temp:
-            num += c
-        answer.add(num)
+def dfs(y, x, t):
+    if(len(t) == 6):
+        answer.add(t)
     for a,b in [(1,0), (-1,0), (0,1), (0,-1)]:
-        if(-1 < y + a < 5 and -1 < x + b < 5 and len(temp) < 6):
-            dfs(y + a, x + b)
-            temp.pop()
+        if(-1 < y + a < 5 and -1 < x + b < 5 and len(t) < 6):
+            dfs(y + a, x + b, t + board[y + a][x + b])
 
 for i in range(5):
     for j in range(5):
-        dfs(i,j)
-        temp.clear()
+        dfs(i, j, board[i][j])
+        
 print(len(answer))
