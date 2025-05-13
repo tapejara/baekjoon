@@ -10,14 +10,9 @@ for i in range(r):
         o = 0
         if(field[i][j] != "#"):
             q.append((j, i))
-            if(field[i][j] == "v"):
-                v += 1
-            elif(field[i][j] == "o"):
-                o += 1
-            field[i][j] = "#"
         while q:
             x, y = q.popleft()
-            for a, b in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
+            for a, b in [(0, 0), (0, 1), (0, -1), (1, 0), (-1, 0)]:
                 if(-1 < x + a < c and -1 < y + b < r and field[y + b][x + a] != "#"):
                     q.append((x + a, y + b))
                     if(field[y + b][x + a] == "v"):
