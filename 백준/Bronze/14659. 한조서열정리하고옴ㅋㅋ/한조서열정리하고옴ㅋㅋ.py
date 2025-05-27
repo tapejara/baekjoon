@@ -1,15 +1,13 @@
-import sys
-input = sys.stdin.readline
 n = int(input())
-list1 = list(map(int,input().split()))
-answer = []
+h = list(map(int,input().split()))
+answer = 0
+temp = 0
+a = 0
 for i in range(n):
-    count = 0
-    if(i < n):
-        for j in range(i + 1, n):
-            if(list1[i] > list1[j]):
-                count += 1
-            else:
-                break
-    answer.append(count)
-print(max(answer))
+    if(a < h[i]):
+        a = h[i]
+        temp = 0
+        continue
+    temp += 1
+    answer = max(temp,answer)
+print(answer)
