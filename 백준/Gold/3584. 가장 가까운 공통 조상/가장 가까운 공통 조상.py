@@ -3,10 +3,10 @@ sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
 t = int(input())
 def dfs(node):
-        if(list1[node] in list2):
+        if(list1[node] in set1):
             print(list1[node])
         elif(list1[node] != 0):
-            list2.append(list1[node])
+            set1.add(list1[node])
             dfs(list1[node])
 for _ in range(t):
     n = int(input())
@@ -15,6 +15,6 @@ for _ in range(t):
         a, b = map(int,input().split())
         list1[b] = a
     x, y = map(int,input().split())
-    list2 = [x,y]
+    set1 = set({x,y})
     dfs(x)
     dfs(y)
