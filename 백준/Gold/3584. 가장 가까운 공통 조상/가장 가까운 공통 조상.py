@@ -2,18 +2,19 @@ import sys
 sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
 t = int(input())
+def dfs(node):
+        if(list1[node] in list2):
+            print(list1[node])
+        elif(list1[node] != 0):
+            list2.append(list1[node])
+            dfs(list1[node])
 for _ in range(t):
     n = int(input())
-    list1 = [tuple(map(int,input().split())) for _ in range(n - 1)]
+    list1 = [0 for _ in range(n + 1)]
+    for i in range(n - 1):
+        a, b = map(int,input().split())
+        list1[b] = a
     x, y = map(int,input().split())
-    list_x = [x,y]
-    def dfs(node):
-        for i in range(n - 1):
-            if(list1[i][1] == node):
-                if(list1[i][0] in list_x):
-                    print(list1[i][0])
-                else:
-                    list_x.append(list1[i][0])
-                    dfs(list1[i][0])
+    list2 = [x,y]
     dfs(x)
     dfs(y)
