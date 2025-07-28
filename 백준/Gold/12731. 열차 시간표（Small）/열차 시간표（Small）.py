@@ -1,26 +1,21 @@
 from collections import deque
 import sys
-import heapq
 input = sys.stdin.readline
 n = int(input())
+def function(num,ab,array):
+    for _ in range(num):
+        a, b = map(str,input().split())
+        c, d = map(int,a.split(":"))
+        e, f = map(int,b.split(":"))
+        start = c * 60 + d
+        end = e * 60 + f + t
+        array.append([start,end,ab])
 for x in range(n):
     t = int(input())
     na, nb = map(int,input().split())
     list1 = []
-    for _ in range(na):
-        a, b = map(str,input().split())
-        c, d = map(int,a.split(":"))
-        e, f = map(int,b.split(":"))
-        start = c * 60 + d
-        end = e * 60 + f + t
-        list1.append([start,end,0])
-    for _ in range(nb):
-        a, b = map(str,input().split())
-        c, d = map(int,a.split(":"))
-        e, f = map(int,b.split(":"))
-        start = c * 60 + d
-        end = e * 60 + f + t
-        list1.append([start,end,1])
+    function(na,0,list1)
+    function(nb,1,list1)
     answer_a = na
     answer_b = nb
     list1.sort()
