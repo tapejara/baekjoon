@@ -1,3 +1,5 @@
+import sys
+input = sys.stdin.readline
 n, m = map(int,input().split()) 
 list1 = [[0 for _ in range(20)] for _ in range(n)]
 list2 = []
