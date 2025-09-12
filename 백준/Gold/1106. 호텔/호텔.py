@@ -11,7 +11,6 @@ dp = [1e9 for _ in range(c + max(w) + 1)]
 dp[0] = 0
 count = c // min(w) + 1
 for i in range(n):
-    for j in range(count):
-        for l in range(c + max(w), w[i] - 1, -1):
-            dp[l] = min(dp[l], dp[l - w[i]] + v[i])
+    for j in range(w[i],c + max(w) + 1):
+            dp[j] = min(dp[j], dp[j - w[i]] + v[i])
 print(min(dp[c:-1]))
