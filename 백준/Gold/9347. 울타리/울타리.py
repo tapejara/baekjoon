@@ -24,14 +24,9 @@ for _ in range(t):
             elif(-1 < current_x + x < m + 2 and -1 < current_y + y < n + 2 and list1[current_y + y][current_x + x] == 1 and fence[current_y + y][current_x + x] > fence[current_y][current_x] + 1):
                 fence[current_y + y][current_x + x] = fence[current_y][current_x] + 1
                 q.append((current_x + x, current_y + y))
-    hedge = 0
+    list2 = []
     for i in range(n + 2):
         for j in range(m + 2):
             if(list1[i][j] == 0):
-                hedge = max(hedge, fence[i][j])
-    flower = 0
-    for i in range(n + 2):
-        for j in range(m + 2):
-            if(fence[i][j] == hedge and list1[i][j] == 0):
-                flower += 1
-    print(hedge, flower)
+                list2.append(fence[i][j])
+    print(max(list2), list2.count(max(list2)))
