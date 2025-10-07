@@ -6,7 +6,10 @@ for _ in range(t):
     n, m = map(int,input().split())
     list1 = [[-1 for _ in range(m + 2)]]
     for _ in range(n):
-        temp = [-1] + list(map(int,input().split())) + [-1]
+        temp = [-1]
+        for i in list(map(int,input().split())):
+            temp.append(i)
+        temp.append(-1)
         list1.append(temp)
     list1.append([-1 for _ in range(m + 2)])
     fence = [[1e99 for _ in range(m + 2)] for _ in range(n + 2)]
