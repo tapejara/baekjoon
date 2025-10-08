@@ -8,24 +8,26 @@ dist[0][0] = 0
 q = deque([(0, 0)])
 list2 = [(-1,-1), (0,-1), (0,0), (-1,0)]
 list3 = [(-1,-1), (1,-1), (1,1), (-1,1)]
+def function(x0,y0,x1,y1,x2,y2,z):
+    if(list1[y2][x2] == "\\"):
+        if(z % 2 == 0 and dist[y1][x1] > dist[y0][x0]):
+            dist[y1][x1] = dist[y0][x0]
+            q.appendleft((x1,y1))
+        elif(z % 2 == 1 and dist[y1][x1] > dist[y0][x0] + 1):
+            dist[y1][x1] = dist[y0][x0] + 1
+            q.append((x1,y1))
+    elif(list1[y2][x2] == "/"):
+        if(z % 2 == 0 and dist[y1][x1] > dist[y0][x0] + 1):
+            dist[y1][x1] = dist[y0][x0] + 1
+            q.append((x1,y1))
+        elif(z % 2 == 1 and dist[y1][x1] > dist[y0][x0]):
+            dist[y1][x1] = dist[y0][x0]
+            q.appendleft((x1,y1))
 while q:
     current_x, current_y = q.popleft()
     for i in range(4):
         if(-1 < current_x + list3[i][0] < m + 1 and -1 < current_y + list3[i][1] < n + 1):
-            if(list1[current_y + list2[i][1]][current_x + list2[i][0]] ==  "\\"):
-                if(i % 2 == 0 and dist[current_y + list3[i][1]][current_x + list3[i][0]] > dist[current_y][current_x]):
-                    dist[current_y + list3[i][1]][current_x + list3[i][0]] = dist[current_y][current_x]
-                    q.appendleft((current_x + list3[i][0], current_y + list3[i][1]))
-                elif(i % 2 == 1 and dist[current_y + list3[i][1]][current_x + list3[i][0]] > dist[current_y][current_x] + 1):
-                    dist[current_y + list3[i][1]][current_x + list3[i][0]] = dist[current_y][current_x] + 1
-                    q.append((current_x + list3[i][0], current_y + list3[i][1]))
-            elif(list1[current_y + list2[i][1]][current_x + list2[i][0]] ==  "/"):
-                if(i % 2 == 1 and dist[current_y + list3[i][1]][current_x + list3[i][0]] > dist[current_y][current_x]):
-                    dist[current_y + list3[i][1]][current_x + list3[i][0]] = dist[current_y][current_x]
-                    q.appendleft((current_x + list3[i][0], current_y + list3[i][1]))
-                elif(i % 2 == 0 and dist[current_y + list3[i][1]][current_x + list3[i][0]] > dist[current_y][current_x] + 1):
-                    dist[current_y + list3[i][1]][current_x + list3[i][0]] = dist[current_y][current_x] + 1
-                    q.append((current_x + list3[i][0], current_y + list3[i][1]))
+            function(current_x, current_y, current_x + list3[i][0],current_y + list3[i][1], current_x + list2[i][0], current_y + list2[i][1], i)
 if(dist[-1][-1] == 1e99):
     print("NO SOLUTION")
 else:
