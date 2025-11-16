@@ -1,8 +1,4 @@
 a, b = input().split()
-answer = 0
-for i in range(len(a)):
-    if(int(a[i]) == 0):
-        continue
-    for j in range(len(b)):
-        answer += int(a[i]) * int(b[j])
-print(answer)
+a = [int(i) for i in a]
+b = [int(i) for i in b]
+print(sum(a) * sum(b))
