@@ -2,7 +2,6 @@ list1 = []
 for _ in range(2):
     list1.append(tuple(map(int,input().split())))
 dist_list = [[1e99 for _ in range(8)] for _ in range(8)]
-next_node = [[i for i in range(8)] for _ in range(8)]
 for _ in range(3):
     x1, y1, x2, y2 = map(int,input().split())
     list1.append((x1, y1))
@@ -19,5 +18,4 @@ for i in range(8):
         for k in range(8):
             if(dist_list[j][k] > dist_list[j][i] + dist_list[i][k]):
                 dist_list[j][k] = dist_list[j][i] + dist_list[i][k]
-                next_node[j][k] = next_node[j][i]
 print(dist_list[0][1])
