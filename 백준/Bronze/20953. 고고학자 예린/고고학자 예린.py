@@ -1,3 +1,5 @@
+import sys
+input = sys.stdin.readline
 t = int(input())
 list1 = [0, 1]
 for i in range(2, 1555):
